@@ -1,0 +1,59 @@
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+
+class Answer{
+    long long a;
+
+    bool Is_string( string str ){
+        int start = 0;
+        if( str.empty() ){
+            return false;
+        } else if(str[0] == '+' || str[0] == '-' ) {
+            start++;
+        }
+        for( int i = start ; i < str.length() ; i++ ){
+            if( !isdigit( str[i] ) ){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    long long get_input( const string msg ){
+        string str;
+        while( true ){
+            cout<<msg;
+            getline( cin , str );
+            if( Is_string(str) ){
+                try{
+                long long val = stoll(str);
+                return val;
+                }
+                catch( out_of_range& ){
+                    cout<<"enter number is too large Please try again";
+                }
+            } else {
+                cout<<"Invailid input please Enter a ner number";
+            }
+        }
+    }
+
+    public : long long input( const string str ){
+        a = get_input("Enetr 1st number");
+        return a;
+    }
+
+
+};
+
+
+int main(){
+
+    Answer ans;
+    int n;
+    n = ans.input("Enter a number");
+    cout<<n;
+
+}
